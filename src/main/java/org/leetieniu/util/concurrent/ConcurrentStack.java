@@ -59,10 +59,7 @@ public final class ConcurrentStack<E> implements Stack<E> {
 			StackNode next = oldNode.next;
 			if(top.compareAndSet(oldNode, next)) {
 				size.decrementAndGet();
-				if(next == null) {
-					return null;
-				}
-				return next.e;
+				return oldNode.e;
 			}
 		}
 	}
@@ -130,7 +127,7 @@ public final class ConcurrentStack<E> implements Stack<E> {
 		
 		@Override
 		public boolean hasNext() {
-			return now == null;
+			return now != null;
 		}
 
 		@Override
