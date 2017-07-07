@@ -38,15 +38,11 @@ public final class ConcurrentStack<E> implements Stack<E> {
 	
 	@Override
 	public E peek() {
-		for(;;) {
-			StackNode oldNode = top.get();
-			if(oldNode == null) {
-				return null;
-			}
-			if(top.compareAndSet(oldNode, oldNode)) {
-				return oldNode.e;
-			}
+		StackNode oldNode = top.get();
+		if(oldNode == null) {
+			return null;
 		}
+		return oldNode.e;
 	}
 	
 	@Override
