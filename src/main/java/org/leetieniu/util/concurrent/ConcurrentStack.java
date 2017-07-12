@@ -115,7 +115,7 @@ public final class ConcurrentStack<E> implements Stack<E> {
 				try {
 					node = (StackNode) node.clone();
 				} catch (CloneNotSupportedException ex) {
-					throw new RuntimeException("Clone NotSupported", ex);
+					// no operation 
 				}
 			}
 			now = node;
